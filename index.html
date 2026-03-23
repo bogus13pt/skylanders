@@ -5,184 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skylanders — Portal Master Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Exo+2:wght@400;500;600;700;800;900&family=Exo+2:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#060812;--surface:#0c0f1e;--surface2:#111528;--surface3:#161b32;
-  --border:rgba(255,255,255,0.06);--border-bright:rgba(255,255,255,0.14);
-  --gold:#ffd700;--gold-dim:rgba(255,215,0,0.12);
-  --sky:#00c8ff;--sky-dim:rgba(0,200,255,0.12);
-  --text:#dde4f0;--muted:#4a5370;--muted2:#7a85a0;
-  --radius:14px;--card-w:158px;
-  /* elements */
-  --fire:#ff4400;--water:#0099ff;--earth:#cc7700;--air:#88ddff;
-  --life:#33cc44;--undead:#9933cc;--magic:#ff33bb;--tech:#ffaa00;
-  --light:#ffee33;--dark:#552299;
+  --bg:#08152a;--bg2:#050e1e;--surface:#0d1c38;--surface2:#122040;--surface3:#172848;
+  --border:rgba(56,212,255,0.10);--border-bright:rgba(56,212,255,0.22);
+  --gold:#ffc820;--sky:#38d4ff;--green:#4ade80;
+  --text:#deeeff;--muted:#3d5a80;--muted2:#6a8aaa;
+  --radius:12px;--card-w:162px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;padding-bottom:80px;-webkit-font-smoothing:antialiased}
-
-/* ── noise overlay ── */
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.6}
-
-/* ── header ── */
-header{position:relative;overflow:hidden;padding:72px 24px 52px;text-align:center;background:linear-gradient(180deg,#0a0c1f 0%,var(--bg) 100%);border-bottom:1px solid var(--border)}
-header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% -10%,rgba(0,200,255,.15) 0%,rgba(255,215,0,.08) 40%,transparent 70%);pointer-events:none}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,200,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,.03) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black,transparent)}
-
-/* portal glow rings */
-.portal-rings{position:absolute;left:50%;top:0;transform:translate(-50%,-60%) rotate(0deg);width:600px;height:600px;pointer-events:none;opacity:.07}
-.portal-rings div{position:absolute;inset:0;border-radius:50%;border:2px solid var(--sky);animation:spin 20s linear infinite}
-.portal-rings div:nth-child(2){inset:40px;border-color:var(--gold);animation-duration:15s;animation-direction:reverse}
-.portal-rings div:nth-child(3){inset:80px;border-color:#ff33bb;animation-duration:25s}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.eyebrow{font-family:'Exo 2',sans-serif;font-size:11px;font-weight:800;letter-spacing:8px;text-transform:uppercase;color:var(--sky);margin-bottom:14px;position:relative;z-index:1}
-h1{font-family:'Russo One',sans-serif;font-size:clamp(3.5rem,11vw,7rem);letter-spacing:4px;line-height:.92;position:relative;z-index:1;background:linear-gradient(135deg,#00c8ff 0%,#ffd700 40%,#ff33bb 70%,#00c8ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:shimmer 5s linear infinite}
-@keyframes shimmer{to{background-position:200% center}}
-.subtitle{font-size:13px;color:var(--muted2);margin-top:12px;position:relative;z-index:1;letter-spacing:.5px}
-.subtitle strong{color:var(--gold);font-weight:700}
-
-.stats{display:flex;justify-content:center;gap:0;margin:24px auto 0;max-width:520px;position:relative;z-index:1;border:1px solid var(--border-bright);border-radius:12px;overflow:hidden;backdrop-filter:blur(8px);background:rgba(10,12,28,.7)}
-.stat{flex:1;padding:13px 12px;text-align:center;border-right:1px solid var(--border)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg2);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;padding-bottom:80px;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(ellipse 140% 55% at 50% -5%,rgba(0,110,255,0.16) 0%,transparent 60%),
+  repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,90,200,0.035) 48px),
+  repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(0,90,200,0.035) 48px);}
+header{position:relative;overflow:hidden;padding:64px 24px 50px;text-align:center;background:linear-gradient(180deg,#040c1c 0%,#071220 60%,transparent 100%);border-bottom:2px solid rgba(56,212,255,0.18);}
+.hglow{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 80% at 50% 0%,rgba(56,212,255,0.13) 0%,transparent 65%),
+  radial-gradient(ellipse 35% 35% at 15% 60%,rgba(255,200,32,0.06) 0%,transparent 70%),
+  radial-gradient(ellipse 35% 35% at 85% 60%,rgba(255,32,160,0.06) 0%,transparent 70%);}
+.portal-wrap{position:absolute;left:50%;top:-60px;transform:translateX(-50%);width:520px;height:520px;pointer-events:none;opacity:.055;}
+.portal-wrap div{position:absolute;inset:0;border-radius:50%;animation:pspin 20s linear infinite;}
+.portal-wrap div:nth-child(1){border:3px solid #38d4ff;}
+.portal-wrap div:nth-child(2){inset:32px;border:2px solid #ffc820;animation-duration:13s;animation-direction:reverse;}
+.portal-wrap div:nth-child(3){inset:64px;border:1.5px solid #ff22aa;animation-duration:30s;}
+.portal-wrap div:nth-child(4){inset:96px;border:1px solid #4ade80;animation-duration:24s;animation-direction:reverse;}
+@keyframes pspin{to{transform:rotate(360deg)}}
+.eyebrow{font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;letter-spacing:7px;text-transform:uppercase;color:var(--sky);margin-bottom:10px;position:relative;z-index:1;text-shadow:0 0 18px rgba(56,212,255,0.55);}
+h1{font-family:'Bangers',cursive;font-size:clamp(4rem,13vw,8.5rem);letter-spacing:8px;line-height:.88;position:relative;z-index:1;
+  background:linear-gradient(160deg,#ffffff 0%,#38d4ff 28%,#ffc820 60%,#ffffff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200% auto;animation:hsh 4s linear infinite;
+  filter:drop-shadow(0 0 28px rgba(56,212,255,0.3)) drop-shadow(4px 5px 0 rgba(0,25,70,0.75));}
+@keyframes hsh{to{background-position:200% center}}
+.subtitle{font-size:13px;color:var(--muted2);margin-top:10px;position:relative;z-index:1;font-weight:700;}
+.subtitle strong{color:var(--gold);font-weight:900;}
+.stats{display:flex;justify-content:center;gap:0;margin:22px auto 0;max-width:490px;position:relative;z-index:1;
+  border:2px solid rgba(56,212,255,0.18);border-radius:14px;overflow:hidden;
+  backdrop-filter:blur(14px);background:linear-gradient(135deg,rgba(6,14,32,0.9),rgba(12,22,46,0.9));
+  box-shadow:0 4px 30px rgba(0,80,200,0.2),inset 0 1px 0 rgba(56,212,255,0.08);}
+.stat{flex:1;padding:12px 8px;text-align:center;border-right:1px solid rgba(56,212,255,0.1);}
 .stat:last-child{border-right:none}
-.stat-val{font-family:'Russo One',sans-serif;font-size:1.55rem;color:var(--text);line-height:1}
-.stat-val.gold{color:var(--gold)}
-.stat-val.sky{color:var(--sky)}
-.stat-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
-
-/* ── controls ── */
-.controls{max-width:1300px;margin:28px auto 0;padding:0 20px}
-.search-wrap{position:relative;margin-bottom:14px}
-.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:15px}
-input[type="text"]{width:100%;background:var(--surface);border:1px solid var(--border-bright);border-radius:10px;color:var(--text);font-family:'Exo 2',sans-serif;font-size:15px;padding:12px 18px 12px 44px;outline:none;transition:border-color .2s,box-shadow .2s}
-input[type="text"]:focus{border-color:var(--sky);box-shadow:0 0 0 3px var(--sky-dim)}
+.stat-val{font-family:'Bangers',cursive;font-size:1.8rem;letter-spacing:2px;line-height:1;}
+.sv-sky{color:#38d4ff;text-shadow:0 0 14px rgba(56,212,255,0.5);}
+.sv-gold{color:#ffc820;text-shadow:0 0 14px rgba(255,200,32,0.5);}
+.sv-wht{color:#fff;}
+.stat-lbl{font-size:8px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.controls{max-width:1340px;margin:26px auto 0;padding:0 20px;}
+.search-wrap{position:relative;margin-bottom:14px;}
+.sicon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:15px;}
+input[type="text"]{width:100%;background:var(--surface);border:2px solid rgba(56,212,255,0.14);border-radius:12px;color:var(--text);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;padding:11px 18px 11px 44px;outline:none;transition:border-color .2s,box-shadow .2s;}
+input[type="text"]:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(56,212,255,0.14),0 0 18px rgba(56,212,255,0.08);}
 input[type="text"]::placeholder{color:var(--muted)}
-
-.filter-group{margin-bottom:10px}
-.filter-label{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-right:4px}
-.filter-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
-.filter-btn{background:transparent;border:1px solid var(--border-bright);border-radius:999px;color:var(--muted2);cursor:pointer;font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 13px;transition:all .15s;white-space:nowrap}
-.filter-btn:hover{background:rgba(255,255,255,.06);color:var(--text)}
-.filter-btn.active{color:#000;border-color:transparent}
-
-.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px}
-.owned-pill{background:rgba(0,200,255,.1);border:1px solid rgba(0,200,255,.3);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--sky);font-family:'Exo 2',sans-serif;letter-spacing:.5px}
-.count-pill{font-size:12px;color:var(--muted);font-family:'Exo 2',sans-serif}
-.view-toggle{display:flex;gap:4px}
-.view-btn{background:var(--surface);border:1px solid var(--border);border-radius:7px;color:var(--muted);cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s}
-.view-btn.active{background:var(--sky);border-color:var(--sky);color:#000}
-
-/* ── section labels ── */
-.section-label{max-width:1300px;margin:28px auto 12px;padding:0 20px;display:flex;align-items:center;gap:14px}
-.section-label span{font-family:'Exo 2',sans-serif;font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* ── grid & card ── */
-.grid{max-width:1300px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--card-w),1fr));gap:11px}
-.grid.list-view{grid-template-columns:1fr}
-
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s;animation:rise .3s ease both;cursor:default}
-@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.card:hover{transform:translateY(-4px)}
-.card.owned{outline:2px solid var(--sky);outline-offset:-1px;background:var(--surface2)}
-.card.owned .card-img{background:#0a1220}
-
-.card-img{height:170px;background:#08091a;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.card-img img{width:100%;height:100%;object-fit:contain;padding:8px;transition:transform .35s}
-.card:hover .card-img img{transform:scale(1.08)}
-.placeholder{width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;display:none}
-.ph-name{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;text-align:center;opacity:.4;line-height:1.3;font-family:'Exo 2',sans-serif}
-
-.game-badge{position:absolute;top:8px;left:8px;font-family:'Exo 2',sans-serif;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#000;z-index:2;white-space:nowrap}
-.owned-btn{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);background:rgba(0,0,0,.55);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:rgba(255,255,255,.25);transition:all .15s;user-select:none;z-index:2;backdrop-filter:blur(4px)}
-.owned-btn:hover{border-color:var(--sky);color:var(--sky)}
-.owned-btn.owned{background:var(--sky);border-color:var(--sky);color:#000}
-
-.card-body{padding:10px 12px 13px}
-.card-type{font-family:'Exo 2',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--muted);margin-bottom:3px;text-transform:uppercase}
-.card-name{font-family:'Exo 2',sans-serif;font-size:15px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:7px;letter-spacing:.2px}
-.card-tags{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
-.elem-tag{font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;white-space:nowrap;color:#000}
-.variant-tag{font-size:10px;color:var(--muted2);font-weight:600}
-.variant-tag::before{content:'✦ ';color:var(--gold);font-size:9px}
-
-/* list view */
-.grid.list-view .card{display:flex;flex-direction:row;align-items:center}
-.grid.list-view .card-img{width:80px;height:80px;flex-shrink:0;border-radius:0}
-.grid.list-view .card-img img{padding:4px}
-.grid.list-view .card-body{flex:1;padding:10px 14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.grid.list-view .card-name{margin-bottom:0;font-size:14px}
-.grid.list-view .game-badge{top:5px;left:5px;font-size:8px;padding:2px 7px}
-.grid.list-view .owned-btn{top:5px;right:5px}
-
-.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted)}
-.empty-icon{font-size:3rem;margin-bottom:14px;opacity:.3}
-.empty p{font-family:'Exo 2',sans-serif;font-size:16px;font-weight:700;letter-spacing:1px}
-
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:99px}
-@media(max-width:480px){:root{--card-w:140px}h1{font-size:3rem}}
+.fgrp{margin-bottom:10px;}
+.flbl{display:inline-block;font-size:9px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.frow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px;}
+.fbtn{background:rgba(13,28,56,0.8);border:1.5px solid rgba(56,212,255,0.16);border-radius:999px;color:var(--muted2);cursor:pointer;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:4px 12px;transition:all .14s;white-space:nowrap;}
+.fbtn:hover{background:rgba(56,212,255,0.08);color:var(--text);border-color:rgba(56,212,255,0.32);}
+.fbtn.active{border-color:transparent;}
+.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
+.opill{background:rgba(56,212,255,0.09);border:1.5px solid rgba(56,212,255,0.28);border-radius:8px;padding:5px 13px;font-size:11px;font-weight:900;color:var(--sky);font-family:'Nunito',sans-serif;}
+.cpill{font-size:11px;color:var(--muted);font-family:'Nunito',sans-serif;font-weight:700;}
+.vtog{display:flex;gap:4px;}
+.vbtn{background:var(--surface);border:1.5px solid var(--border);border-radius:7px;color:var(--muted);cursor:pointer;width:31px;height:31px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .14s;}
+.vbtn.active{background:var(--sky);border-color:var(--sky);color:#000;}
+.slabel{max-width:1340px;margin:30px auto 14px;padding:0 20px;display:flex;align-items:center;gap:14px;}
+.slabel-inner{display:flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--surface2),var(--surface3));border:1.5px solid rgba(56,212,255,0.14);border-radius:9px;padding:6px 16px;box-shadow:0 2px 10px rgba(0,0,0,0.3);white-space:nowrap;}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.stxt{font-family:'Bangers',cursive;font-size:15px;letter-spacing:3px;text-transform:uppercase;}
+.scnt{font-size:10px;font-weight:900;color:var(--muted);letter-spacing:1px;}
+.slabel::before,.slabel::after{content:'';flex:1;height:1px;}
+.slabel::before{background:linear-gradient(90deg,transparent,rgba(56,212,255,0.14));}
+.slabel::after{background:linear-gradient(90deg,rgba(56,212,255,0.14),transparent);}
+.grid{max-width:1340px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--card-w),1fr));gap:12px;}
+.grid.lv{grid-template-columns:1fr;}
+.card{background:linear-gradient(155deg,var(--surface) 0%,var(--surface2) 100%);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;transition:transform .2s,box-shadow .2s,border-color .2s;animation:rise .3s ease both;cursor:default;}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card:hover{transform:translateY(-5px);}
+.card.owned{border-color:rgba(56,212,255,0.45);background:linear-gradient(155deg,#0c1d38,#111f3e);box-shadow:0 0 14px rgba(56,212,255,0.12);}
+.cimg{height:172px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.cimg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(4,10,24,0.65) 100%);pointer-events:none;}
+.cimg img{width:100%;height:100%;object-fit:contain;padding:8px;transition:transform .33s;position:relative;z-index:1;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.55));}
+.card:hover .cimg img{transform:scale(1.1) translateY(-3px);}
+.phdr{width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:16px;display:none;}
+.phico{font-size:2rem;opacity:.18;}
+.phnm{font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;text-align:center;opacity:.3;line-height:1.3;}
+.gbadge{position:absolute;top:8px;left:8px;font-family:'Nunito',sans-serif;font-size:9px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#000;z-index:3;box-shadow:0 2px 8px rgba(0,0,0,0.45);}
+.obtn{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.18);background:rgba(4,10,24,0.72);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:rgba(255,255,255,0.2);transition:all .14s;user-select:none;z-index:3;backdrop-filter:blur(6px);}
+.obtn:hover{border-color:var(--sky);color:var(--sky);}
+.obtn.owned{background:var(--sky);border-color:var(--sky);color:#000;box-shadow:0 0 10px rgba(56,212,255,0.45);}
+.cbody{padding:10px 12px 13px;}
+.ctype{font-size:9px;font-weight:900;letter-spacing:2px;color:var(--muted);margin-bottom:3px;text-transform:uppercase;}
+.cname{font-family:'Bangers',cursive;font-size:17px;letter-spacing:1px;color:var(--text);line-height:1.15;margin-bottom:6px;}
+.ctags{display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
+.etag{font-size:9px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.3);}
+.vtag{font-size:10px;color:var(--gold);font-weight:800;}
+.vtag::before{content:'★ ';font-size:9px;}
+.grid.lv .card{display:flex;flex-direction:row;align-items:center;min-height:80px;}
+.grid.lv .cimg{width:80px;height:80px;flex-shrink:0;border-radius:0;}
+.grid.lv .cimg img{padding:4px;}
+.grid.lv .cimg::after{display:none;}
+.grid.lv .cbody{flex:1;padding:8px 14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.grid.lv .cname{margin-bottom:0;font-size:15px;}
+.grid.lv .gbadge{top:5px;left:5px;font-size:8px;padding:2px 7px;}
+.grid.lv .obtn{top:5px;right:5px;}
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted);}
+.empty-ico{font-size:3rem;margin-bottom:14px;opacity:.18;}
+.empty p{font-family:'Bangers',cursive;font-size:22px;letter-spacing:2px;}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:99px}
+@media(max-width:480px){:root{--card-w:145px}h1{font-size:3.5rem}}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="hero-grid"></div>
-  <div class="portal-rings"><div></div><div></div><div></div></div>
-  <div class="eyebrow">Portal of Power · Complete Collection Checklist</div>
+  <div class="hglow"></div>
+  <div class="portal-wrap"><div></div><div></div><div></div><div></div></div>
+  <div class="eyebrow">Portal of Power &middot; Complete Collection Checklist</div>
   <h1>SKYLANDERS</h1>
-  <p class="subtitle">Every figure ever placed on the Portal — <strong id="totalCount">…</strong> items across 6 games</p>
+  <p class="subtitle">Every figure ever placed on the Portal &mdash; <strong id="totalCount">&hellip;</strong> items across 6 games</p>
   <div class="stats">
-    <div class="stat"><div class="stat-val sky" id="statOwned">0</div><div class="stat-lbl">Owned</div></div>
-    <div class="stat"><div class="stat-val" id="statTotal">0</div><div class="stat-lbl">Total</div></div>
-    <div class="stat"><div class="stat-val gold" id="statPct">0%</div><div class="stat-lbl">Complete</div></div>
-    <div class="stat"><div class="stat-val">6</div><div class="stat-lbl">Games</div></div>
+    <div class="stat"><div class="stat-val sv-sky" id="statOwned">0</div><div class="stat-lbl">Owned</div></div>
+    <div class="stat"><div class="stat-val sv-wht" id="statTotal">0</div><div class="stat-lbl">Total</div></div>
+    <div class="stat"><div class="stat-val sv-gold" id="statPct">0%</div><div class="stat-lbl">Complete</div></div>
+    <div class="stat"><div class="stat-val sv-wht">6</div><div class="stat-lbl">Games</div></div>
   </div>
 </header>
-
 <div class="controls">
-  <div class="search-wrap">
-    <span class="search-icon">⌕</span>
-    <input type="text" id="search" placeholder="Search by name, element, game, type…" autocomplete="off" spellcheck="false">
-  </div>
-  <div class="filter-group">
-    <div class="filter-label">Game</div>
-    <div class="filter-row" id="gameFilters"></div>
-  </div>
-  <div class="filter-group">
-    <div class="filter-label">Type</div>
-    <div class="filter-row" id="typeFilters"></div>
-  </div>
-  <div class="filter-group">
-    <div class="filter-label">Element</div>
-    <div class="filter-row" id="elemFilters"></div>
-  </div>
+  <div class="search-wrap"><span class="sicon">&#x2315;</span><input type="text" id="search" placeholder="Search by name, element, game, type&hellip;" autocomplete="off" spellcheck="false"></div>
+  <div class="fgrp"><div class="flbl">Game</div><div class="frow" id="gFilters"></div></div>
+  <div class="fgrp"><div class="flbl">Type</div><div class="frow" id="tFilters"></div></div>
+  <div class="fgrp"><div class="flbl">Element</div><div class="frow" id="eFilters"></div></div>
   <div class="toolbar">
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <div class="owned-pill" id="ownedCount">✓ 0 owned</div>
-      <div class="count-pill" id="countPill">Showing 0 items</div>
+      <div class="opill" id="ownedCount">&#10003; 0 owned</div>
+      <div class="cpill" id="countPill">Showing 0 items</div>
     </div>
-    <div class="view-toggle">
-      <button class="view-btn active" id="gridViewBtn" title="Grid" onclick="setView('grid')">⊞</button>
-      <button class="view-btn" id="listViewBtn" title="List" onclick="setView('list')">☰</button>
+    <div class="vtog">
+      <button class="vbtn active" id="gvBtn" title="Grid" onclick="setView('grid')">&#x229E;</button>
+      <button class="vbtn" id="lvBtn" title="List" onclick="setView('list')">&#x2630;</button>
     </div>
   </div>
 </div>
 <div id="output"></div>
-
 <script>
-// ══════════════════════════════════════════════════════════════════
-// IMAGE BASE — skylanderscharacterlist.com (public) + fandom wiki
-// ══════════════════════════════════════════════════════════════════
-// images loaded locally from ./imgs/
-
-// ══════════════════════════════════════════════════════════════════
-// DATA: game, type, element, name, variant, img
-// type: Core | Giant | Swap | TrapMaster | SuperCharger | Sensei |
-//       LightCore | Mini | Vehicle | Trap | Crystal | MagicItem |
-//       Sidekick | EonsElite | Adventure
-// ══════════════════════════════════════════════════════════════════
 const figures = [
 
 // ─────────────────────────────────────────────
@@ -415,7 +380,7 @@ const figures = [
 {game:"TT",type:"TrapMaster",elem:"Life",  name:"Tuff Luck",       variant:null,         img:"imgs/2014/08/TuffLuck.png"},
 {game:"TT",type:"TrapMaster",elem:"Undead",name:"Short Cut",       variant:null,         img:"imgs/2014/08/ShortCut.png"},
 {game:"TT",type:"TrapMaster",elem:"Undead",name:"Bat Spin",        variant:null,         img:"imgs/2014/08/BatSpin.png"},
-{game:"TT",type:"TrapMaster",elem:"Undead",name:"Bat Spin",        variant:"Legendary",  img:"imgs/2013/02/LegendaryBatSpin.png"},
+{game:"TT",type:"TrapMaster",elem:"Undead",name:"Bat Spin",        variant:"Legendary",  img:"imgs/2014/11/LegendaryBatSpin.png"},
 {game:"TT",type:"TrapMaster",elem:"Tech",  name:"Jawbreaker",      variant:null,         img:"imgs/2014/08/Jawbreaker.png"},
 {game:"TT",type:"TrapMaster",elem:"Tech",  name:"Jawbreaker",      variant:"Legendary",  img:"imgs/2014/10/LegendaryJawbreaker.png"},
 {game:"TT",type:"TrapMaster",elem:"Tech",  name:"Gearshift",       variant:null,         img:"imgs/2014/08/Gearshift.png"},
@@ -438,7 +403,7 @@ const figures = [
 {game:"TT",type:"Core",   elem:"Tech",   name:"Hijinx",            variant:null,         img:"imgs/2014/08/Hijinx.png"},
 {game:"TT",type:"Core",   elem:"Light",  name:"Spotlight",         variant:null,         img:"imgs/2014/08/Spotlight.png"},
 {game:"TT",type:"Core",   elem:"Dark",   name:"Blackout",          variant:null,         img:"imgs/2014/08/Blackout.png"},
-{game:"TT",type:"Core",   elem:"Dark",   name:"Blackout",          variant:"Legendary",  img:"imgs/2013/09/LegendaryBlackout.png"},
+{game:"TT",type:"Core",   elem:"Dark",   name:"Blackout",          variant:"Legendary",  img:"imgs/2014/11/LegendaryBlackout.png"},
 
 // Trap Team — Minis
 {game:"TT",type:"Mini",   elem:"Magic",  name:"Mini Spyro",        variant:null,         img:"imgs/2013/02/MiniSpyro.png"},
@@ -493,11 +458,11 @@ const figures = [
 {game:"SC",type:"SuperCharger",elem:"Fire",  name:"Fiesta",         variant:null,        img:"imgs/2015/09/Fiesta.png"},
 {game:"SC",type:"SuperCharger",elem:"Water", name:"Super Shot Stealth Elf",variant:null, img:"imgs/2015/09/SuperShotStealthElf.png"},
 {game:"SC",type:"SuperCharger",elem:"Water", name:"Dive-Clops",     variant:null,        img:"imgs/2015/09/DiveClops.png"},
-{game:"SC",type:"SuperCharger",elem:"Water", name:"Dive-Clops",     variant:"Legendary", img:"imgs/2013/09/LegendaryDiveClops.png"},
-{game:"SC",type:"SuperCharger",elem:"Water", name:"Reef Ripper",    variant:null,        img:"imgs/2013/02/ReefRipper.png"},
+{game:"SC",type:"SuperCharger",elem:"Water", name:"Dive-Clops",     variant:"Legendary", img:"imgs/2015/10/LegendaryDiveClops.png"},
+{game:"SC",type:"SuperCharger",elem:"Water", name:"Reef Ripper",    variant:null,        img:"imgs/2015/06/ReefRipper.png"},
 {game:"SC",type:"SuperCharger",elem:"Earth", name:"Smash Hit",      variant:null,        img:"imgs/2015/09/SmashHit.png"},
 {game:"SC",type:"SuperCharger",elem:"Earth", name:"Smash Hit",      variant:"Steel Plated",img:"imgs/2015/10/SteelPlatedSmashHit.png"},
-{game:"SC",type:"SuperCharger",elem:"Earth", name:"Thrill Roller",  variant:null,        img:"imgs/2013/09/ThrillRoller.png"},
+{game:"SC",type:"SuperCharger",elem:"Earth", name:"Thrill Roller",  variant:null,        img:"imgs/2015/06/ThrillRoller.png"},
 {game:"SC",type:"SuperCharger",elem:"Air",   name:"Hurricane Jet-Vac",variant:null,      img:"imgs/2015/09/HurricaneJetVac.png"},
 {game:"SC",type:"SuperCharger",elem:"Air",   name:"Hurricane Jet-Vac",variant:"Legendary",img:"imgs/2015/10/LegendaryHurricaneJetVac.png"},
 {game:"SC",type:"SuperCharger",elem:"Air",   name:"Sky Slicer",     variant:null,        img:"imgs/2015/09/SkySlicer.png"},
@@ -515,23 +480,23 @@ const figures = [
 {game:"SC",type:"SuperCharger",elem:"Magic", name:"Bowser",         variant:"Nintendo",  img:"imgs/2015/09/Bowser.png"},
 
 // Vehicles
-{game:"SC",type:"Vehicle",elem:"Fire",  name:"Hot Streak (car)",   variant:null,        img:"imgs/2015/09/HotStreakVehicle.png"},
-{game:"SC",type:"Vehicle",elem:"Fire",  name:"Burn-Cycle",         variant:null,        img:"imgs/2013/02/BurnCycle.png"},
+{game:"SC",type:"Vehicle",elem:"Fire",  name:"Hot Streak (car)",   variant:null,        img:"imgs/2015/06/HotStreakVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Fire",  name:"Burn-Cycle",         variant:null,        img:"imgs/2015/06/BurnCycle.png"},
 {game:"SC",type:"Vehicle",elem:"Fire",  name:"Hammer Slam Bowser's Clown Cruiser",variant:"Nintendo",img:"imgs/2015/09/ClownCruiser.png"},
-{game:"SC",type:"Vehicle",elem:"Water", name:"Reef Ripper (sub)",  variant:null,        img:"imgs/2013/02/ReefRipperVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Water", name:"Reef Ripper (sub)",  variant:null,        img:"imgs/2015/06/ReefRipperVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Water", name:"Dive Bomber",        variant:null,        img:"imgs/2015/09/DiveBomber.png"},
-{game:"SC",type:"Vehicle",elem:"Earth", name:"Thrill Roller (ball)",variant:null,       img:"imgs/2013/09/ThrillRollerVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Earth", name:"Thrill Roller (ball)",variant:null,       img:"imgs/2015/06/ThrillRollerVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Earth", name:"Shark Tank",         variant:null,        img:"imgs/2015/09/SharkTank.png"},
-{game:"SC",type:"Vehicle",elem:"Air",   name:"Sky Slicer (jet)",   variant:null,        img:"imgs/2015/09/SkyStickerVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Air",   name:"Sky Slicer (jet)",   variant:null,        img:"imgs/2015/06/SkyStickerVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Air",   name:"Jet Stream",         variant:null,        img:"imgs/2015/09/JetStream.png"},
 {game:"SC",type:"Vehicle",elem:"Air",   name:"Barrel Blaster",     variant:"Nintendo",  img:"imgs/2015/09/BarrelBlaster.png"},
-{game:"SC",type:"Vehicle",elem:"Life",  name:"Buzz Wing (plane)",  variant:null,        img:"imgs/2015/09/BuzzWingVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Life",  name:"Buzz Wing (plane)",  variant:null,        img:"imgs/2015/06/BuzzWingVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Life",  name:"Splatter Splasher",  variant:null,        img:"imgs/2015/09/SplatterSplasher.png"},
-{game:"SC",type:"Vehicle",elem:"Undead",name:"Gold Rusher (car)",  variant:null,        img:"imgs/2015/09/GoldRusherVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Undead",name:"Gold Rusher (car)",  variant:null,        img:"imgs/2015/06/GoldRusherVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Undead",name:"Tomb Buggy",         variant:null,        img:"imgs/2015/09/TombBuggy.png"},
-{game:"SC",type:"Vehicle",elem:"Tech",  name:"Shield Striker (disc)",variant:null,      img:"imgs/2015/09/ShieldStrikerVehicle.png"},
-{game:"SC",type:"Vehicle",elem:"Tech",  name:"Clown Cruiser Dark", variant:"Nintendo",  img:"imgs/2013/02/ClownCruiserDark.png"},
-{game:"SC",type:"Vehicle",elem:"Magic", name:"Sun Runner (plane)", variant:null,        img:"imgs/2015/09/SunRunnerVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Tech",  name:"Shield Striker (disc)",variant:null,      img:"imgs/2015/06/SkyStickerVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Tech",  name:"Clown Cruiser Dark", variant:"Nintendo",  img:"imgs/2015/06/ClownCruiserDark.png"},
+{game:"SC",type:"Vehicle",elem:"Magic", name:"Sun Runner (plane)", variant:null,        img:"imgs/2015/06/SunRunnerVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Magic", name:"Stealth Stinger",    variant:null,        img:"imgs/2015/09/StealthStinger.png"},
 
 // SC Racing Trophies (Gold)
@@ -546,14 +511,14 @@ const figures = [
 {game:"SC",type:"EonsElite",elem:"Water",  name:"Gill Grunt (Eon's Elite)", variant:null, img:"imgs/2015/09/EonsEliteGillGrunt.png"},
 {game:"SC",type:"EonsElite",elem:"Undead", name:"Chop Chop (Eon's Elite)",  variant:null, img:"imgs/2015/09/EonsEliteChopChop.png"},
 {game:"SC",type:"EonsElite",elem:"Air",    name:"Whirlwind (Eon's Elite)",  variant:null, img:"imgs/2015/09/EonsEliteWhirlwind.png"},
-{game:"SC",type:"EonsElite",elem:"Fire",   name:"Flameslinger (Eon's Elite)",variant:null,img:"imgs/2013/02/EonsEliteFlameslinger.png"},
+{game:"SC",type:"EonsElite",elem:"Fire",   name:"Flameslinger (Eon's Elite)",variant:null,img:"imgs/2015/06/EonsEliteFlameslinger.png"},
 {game:"SC",type:"EonsElite",elem:"Earth",  name:"Terrafin (Eon's Elite)",   variant:null, img:"imgs/2015/09/EonsEliteTerrafin.png"},
 
 // ─────────────────────────────────────────────
 // IMAGINATORS (2016)
 // ─────────────────────────────────────────────
 // Senseis
-{game:"IM",type:"Sensei",  elem:"Magic",  name:"Spyro (Sensei)",    variant:null,        img:"imgs/2013/02/SpyroSensei.png"},
+{game:"IM",type:"Sensei",  elem:"Magic",  name:"Spyro (Sensei)",    variant:null,        img:"imgs/2016/09/SpyroSensei.png"},
 {game:"IM",type:"Sensei",  elem:"Magic",  name:"Crash Bandicoot",   variant:"Exclusive", img:"imgs/2016/09/CrashBandicoot.png"},
 {game:"IM",type:"Sensei",  elem:"Magic",  name:"Dr. Neo Cortex",    variant:"Exclusive", img:"imgs/2016/09/NeoCortex.png"},
 {game:"IM",type:"Sensei",  elem:"Fire",   name:"Ka-Boom (Sensei)",  variant:null,        img:"imgs/2013/02/KaBoomSensei.png"},
@@ -602,251 +567,165 @@ const figures = [
 {game:"IM",type:"Crystal", elem:"Light",  name:"Crystal (Light)",   variant:"Star",      img:"imgs/2013/02/CrystalLight.png"},
 {game:"IM",type:"Crystal", elem:"Dark",   name:"Crystal (Dark)",    variant:"Dark",      img:"imgs/2013/02/CrystalDark.png"},
 {game:"IM",type:"Crystal", elem:"Magic",  name:"Crystal (Legendary)",variant:"Legendary",img:"imgs/2013/02/CrystalLegendary.png"},
+
+// SSF Adventure Pack exclusive characters
+{game:"SSF",type:"Core",  elem:"Tech",   name:"Wind-Up",          variant:null,            img:"imgs/2013/12/WindUp.png"},
+
+// Giants Adventure Packs (were missing)
+{game:"SG",type:"Adventure",elem:"Undead",name:"Tower of Time (SG)", variant:null,          img:"imgs/2013/12/TowerOfTime1.png"},
+{game:"SG",type:"Adventure",elem:"Water", name:"Sheep Wreck Island (SG)",variant:null,      img:"imgs/2013/12/SheepWreckIsland1.png"},
+
+// TT Adventure Packs
+{game:"TT",type:"Adventure",elem:"Undead",name:"Nightmare Express",  variant:null,          img:"imgs/2014/09/NightmareExpress.png"},
+{game:"TT",type:"Adventure",elem:"Magic", name:"Mirror of Mystery",  variant:null,          img:"imgs/2014/10/MirrorOfMystery.png"},
+
+// TT Expansion Packs (Light/Dark)
+{game:"TT",type:"ExpansionPack",elem:"Light",name:"Midnight Museum",  variant:"Spotlight+Trap",img:"imgs/2014/10/KnightLight.png"},
+{game:"TT",type:"ExpansionPack",elem:"Dark", name:"Sunscraper Spire", variant:"Blackout+Trap", img:"imgs/2014/10/KnightMare.png"},
+
+// Imaginators Adventure Packs
+{game:"IM",type:"Adventure",elem:"Life",  name:"Enchanted Elven Forest",variant:null,       img:"imgs/2016/05/EnchantedElvenForest.png"},
+{game:"IM",type:"Adventure",elem:"Air",   name:"Gryphon Park Observatory",variant:null,     img:"imgs/2016/10/GryphonParkObservatoryWM.png"},
+{game:"IM",type:"Adventure",elem:"Magic", name:"Thumpin Wumpa Islands",variant:"Crash Ed.", img:"imgs/2014/08/Thumping.png"},
+
 ];
 
-// ══════════════════════════════════════════════════════════════════
-// CONFIG
-// ══════════════════════════════════════════════════════════════════
-const gameColors={
-  "SSA":"#22c55e","SG":"#f59e0b","SSF":"#3b82f6","TT":"#a855f7","SC":"#f97316","IM":"#ec4899"
-};
-const gameLabels={
-  "SSA":"Spyro's Adventure","SG":"Giants","SSF":"Swap Force","TT":"Trap Team","SC":"SuperChargers","IM":"Imaginators"
-};
+const gameColors={"SSA":"#4ade80","SG":"#f59e0b","SSF":"#38d4ff","TT":"#c084fc","SC":"#f97316","IM":"#f43f5e"};
+const gameLabels={"SSA":"Spyro's Adventure","SG":"Giants","SSF":"Swap Force","TT":"Trap Team","SC":"SuperChargers","IM":"Imaginators"};
 const elemColors={
-  "Fire":["#ff4400","#fff"],"Water":["#0099ff","#fff"],"Earth":["#cc7700","#fff"],
-  "Air":["#88ddff","#000"],"Life":["#33cc44","#000"],"Undead":["#9933cc","#fff"],
-  "Magic":["#ff33bb","#fff"],"Tech":["#ffaa00","#000"],"Light":["#ffee33","#000"],
-  "Dark":["#552299","#fff"]
+  "Fire":["#ff5500","#fff"],"Water":["#009dff","#fff"],"Earth":["#b87400","#fff"],
+  "Air":["#44ccee","#000"],"Life":["#22cc44","#000"],"Undead":["#9922cc","#fff"],
+  "Magic":["#ff22aa","#fff"],"Tech":["#ffaa00","#000"],"Light":["#ffe033","#000"],"Dark":["#6622bb","#fff"]
 };
 const typeLabels={
   "Core":"Core","Giant":"Giant","Swap":"Swap Force","TrapMaster":"Trap Master",
   "SuperCharger":"SuperCharger","Sensei":"Sensei","LightCore":"LightCore","Mini":"Mini",
   "Vehicle":"Vehicle","Trap":"Trap","Crystal":"Creation Crystal","MagicItem":"Magic Item",
-  "Sidekick":"Sidekick","EonsElite":"Eon's Elite","Adventure":"Adventure Pack"
+  "Sidekick":"Sidekick","EonsElite":"Eon's Elite","Adventure":"Adventure Pack","ExpansionPack":"Expansion Pack"
 };
-
-const gameFiltersOrder=["All","SSA","SG","SSF","TT","SC","IM"];
-const typeFiltersOrder=["All","Core","Giant","Swap","TrapMaster","SuperCharger","Sensei","LightCore","Mini","Vehicle","Trap","Crystal","MagicItem","Sidekick","EonsElite","Adventure"];
-const elemFiltersOrder=["All","Fire","Water","Earth","Air","Life","Undead","Magic","Tech","Light","Dark"];
-
-let activeGame="All", activeType="All", activeElem="All", viewMode="grid";
+const gameOrder=["SSA","SG","SSF","TT","SC","IM"];
+const typeOrder=["All","Core","Giant","Swap","TrapMaster","SuperCharger","Sensei","LightCore","Mini","Vehicle","Trap","Crystal","MagicItem","Sidekick","EonsElite","Adventure","ExpansionPack"];
+const elemOrder=["All","Fire","Water","Earth","Air","Life","Undead","Magic","Tech","Light","Dark"];
+let activeGame="All",activeType="All",activeElem="All",viewMode="grid";
 const owned=new Set(JSON.parse(localStorage.getItem("sky_owned")||"[]"));
-
 function itemKey(d){return d.game+"|"+d.name+"|"+(d.variant||"")}
 
-// build filter buttons
-function makeFilterGroup(containerId, filters, colorFn, labelFn){
-  const el=document.getElementById(containerId);
-  filters.forEach(f=>{
+function buildFilters(id,items,getColor,getLabel,setActive){
+  const el=document.getElementById(id);
+  items.forEach(item=>{
     const btn=document.createElement("button");
-    btn.className="filter-btn"+(f==="All"?" active":"");
-    btn.textContent=labelFn?labelFn(f):f;
-    btn.dataset.val=f;
-    const col=colorFn(f);
-    if(f==="All"||col){
-      if(f==="All"){btn.style.cssText=`background:#00c8ff;color:#000;border-color:#00c8ff`;}
-    }
+    btn.className="fbtn"+(item==="All"?" active":"");
+    btn.textContent=getLabel(item);
+    const col=getColor(item);
+    if(item==="All") btn.style.cssText="background:rgba(56,212,255,0.1);border-color:rgba(56,212,255,0.4);color:#38d4ff";
     btn.addEventListener("click",()=>{
-      el.querySelectorAll(".filter-btn").forEach(b=>{b.classList.remove("active");b.style.cssText=""});
+      el.querySelectorAll(".fbtn").forEach(b=>{b.classList.remove("active");b.style.cssText=""});
       btn.classList.add("active");
-      const c=colorFn(f);
-      if(c)btn.style.cssText=`background:${c};color:${f==="All"?"#000":(["Air","Life","Tech","Light"].includes(f)?"#000":"#fff")};border-color:${c}`;
-      else if(f==="All")btn.style.cssText=`background:#00c8ff;color:#000;border-color:#00c8ff`;
-      return c;
+      if(item==="All") btn.style.cssText="background:rgba(56,212,255,0.1);border-color:rgba(56,212,255,0.4);color:#38d4ff";
+      else if(col) btn.style.cssText="background:"+col[0]+";color:"+col[1]+";border-color:"+col[0]+";box-shadow:0 2px 10px "+col[0]+"55";
+      setActive(item); render();
     });
     el.appendChild(btn);
   });
 }
-
-// game filters
-(function(){
-  const el=document.getElementById("gameFilters");
-  gameFiltersOrder.forEach(g=>{
-    const btn=document.createElement("button");
-    btn.className="filter-btn"+(g==="All"?" active":"");
-    btn.textContent=g==="All"?"All Games":(gameLabels[g]||g);
-    btn.dataset.val=g;
-    const col=gameColors[g]||"#00c8ff";
-    if(g==="All")btn.style.cssText=`background:#00c8ff;color:#000;border-color:#00c8ff`;
-    btn.addEventListener("click",()=>{
-      el.querySelectorAll(".filter-btn").forEach(b=>{b.classList.remove("active");b.style.cssText=""});
-      btn.classList.add("active");
-      btn.style.cssText=`background:${col};color:#000;border-color:${col}`;
-      activeGame=g;render();
-    });
-    el.appendChild(btn);
-  });
-})();
-
-// type filters
-(function(){
-  const el=document.getElementById("typeFilters");
-  typeFiltersOrder.forEach(t=>{
-    const btn=document.createElement("button");
-    btn.className="filter-btn"+(t==="All"?" active":"");
-    btn.textContent=t==="All"?"All Types":(typeLabels[t]||t);
-    btn.dataset.val=t;
-    btn.addEventListener("click",()=>{
-      el.querySelectorAll(".filter-btn").forEach(b=>{b.classList.remove("active");b.style.cssText=""});
-      btn.classList.add("active");
-      btn.style.cssText=`background:#00c8ff;color:#000;border-color:#00c8ff`;
-      activeType=t;render();
-    });
-    el.appendChild(btn);
-  });
-})();
-
-// elem filters
-(function(){
-  const el=document.getElementById("elemFilters");
-  elemFiltersOrder.forEach(e=>{
-    const btn=document.createElement("button");
-    btn.className="filter-btn"+(e==="All"?" active":"");
-    btn.textContent=e==="All"?"All Elements":e;
-    btn.dataset.val=e;
-    const col=elemColors[e]?elemColors[e][0]:"#00c8ff";
-    const fg=elemColors[e]?elemColors[e][1]:"#000";
-    if(e==="All")btn.style.cssText=`background:#00c8ff;color:#000;border-color:#00c8ff`;
-    btn.addEventListener("click",()=>{
-      el.querySelectorAll(".filter-btn").forEach(b=>{b.classList.remove("active");b.style.cssText=""});
-      btn.classList.add("active");
-      btn.style.cssText=`background:${col};color:${fg};border-color:${col}`;
-      activeElem=e;render();
-    });
-    el.appendChild(btn);
-  });
-})();
+buildFilters("gFilters",["All",...gameOrder],g=>gameColors[g]?[gameColors[g],"#000"]:null,g=>g==="All"?"All Games":(gameLabels[g]||g),g=>{activeGame=g});
+buildFilters("tFilters",typeOrder,()=>null,t=>t==="All"?"All Types":(typeLabels[t]||t),t=>{activeType=t});
+buildFilters("eFilters",elemOrder,e=>elemColors[e]||null,e=>e==="All"?"All Elements":e,e=>{activeElem=e});
 
 function makeCard(data,delay){
-  const gc=gameColors[data.game]||"#00c8ff";
+  const gc=gameColors[data.game]||"#38d4ff";
   const ec=elemColors[data.elem]?elemColors[data.elem][0]:"#888";
   const ecfg=elemColors[data.elem]?elemColors[data.elem][1]:"#fff";
-  const key=itemKey(data), isOwned=owned.has(key);
+  const key=itemKey(data),isOwned=owned.has(key);
   const card=document.createElement("div");
   card.className="card"+(isOwned?" owned":"");
   card.style.animationDelay=delay+"s";
-
-  const imgArea=document.createElement("div");
-  imgArea.className="card-img";
-
+  const imgA=document.createElement("div");
+  imgA.className="cimg";
+  imgA.style.background="radial-gradient(ellipse at 50% 80%,"+ec+"16 0%,rgba(4,10,24,0.92) 70%)";
   const img=document.createElement("img");
   img.alt=data.name+(data.variant?" — "+data.variant:"");
-  img.loading="lazy";
-  img.src=data.img;
-
+  img.loading="lazy"; img.src=data.img;
   const ph=document.createElement("div");
-  ph.className="placeholder";
-  ph.style.cssText=`display:none;background:${ec}10`;
-  ph.innerHTML=`<div class="ph-name" style="color:${ec}">${(data.name).toUpperCase()}</div>`;
+  ph.className="phdr";
+  ph.innerHTML='<div class="phico" style="color:'+ec+'">&#9670;</div><div class="phnm" style="color:'+ec+'">'+data.name.toUpperCase()+'</div>';
   img.onerror=()=>{img.style.display="none";ph.style.display="flex"};
-  imgArea.appendChild(ph);
-  imgArea.appendChild(img);
-
+  imgA.appendChild(ph); imgA.appendChild(img);
   const badge=document.createElement("div");
-  badge.className="game-badge";
-  badge.style.background=gc;
+  badge.className="gbadge";badge.style.background=gc;badge.style.color="#000";
   badge.textContent=gameLabels[data.game]||data.game;
-  imgArea.appendChild(badge);
-
-  const ownBtn=document.createElement("div");
-  ownBtn.className="owned-btn"+(isOwned?" owned":"");
-  ownBtn.textContent="✓";
-  ownBtn.addEventListener("click",e=>{
+  imgA.appendChild(badge);
+  const ob=document.createElement("div");
+  ob.className="obtn"+(isOwned?" owned":"");ob.textContent="✓";
+  ob.addEventListener("click",e=>{
     e.stopPropagation();
-    if(owned.has(key)){owned.delete(key);ownBtn.classList.remove("owned");card.classList.remove("owned");}
-    else{owned.add(key);ownBtn.classList.add("owned");card.classList.add("owned");}
-    localStorage.setItem("sky_owned",JSON.stringify([...owned]));
-    updateStats();
+    if(owned.has(key)){owned.delete(key);ob.classList.remove("owned");card.classList.remove("owned");}
+    else{owned.add(key);ob.classList.add("owned");card.classList.add("owned");}
+    localStorage.setItem("sky_owned",JSON.stringify([...owned]));updateStats();
   });
-  imgArea.appendChild(ownBtn);
-  card.appendChild(imgArea);
-
-  const body=document.createElement("div");
-  body.className="card-body";
-  body.innerHTML=`
-    <div class="card-type">${typeLabels[data.type]||data.type}</div>
-    <div class="card-name">${data.name}</div>
-    <div class="card-tags">
-      <span class="elem-tag" style="background:${ec};color:${ecfg}">${data.elem}</span>
-      ${data.variant?`<span class="variant-tag">${data.variant}</span>`:""}
-    </div>`;
+  imgA.appendChild(ob); card.appendChild(imgA);
+  const body=document.createElement("div"); body.className="cbody";
+  body.innerHTML='<div class="ctype">'+(typeLabels[data.type]||data.type)+'</div><div class="cname">'+data.name+'</div><div class="ctags"><span class="etag" style="background:'+ec+';color:'+ecfg+'">'+data.elem+'</span>'+(data.variant?'<span class="vtag">'+data.variant+'</span>':'')+'</div>';
   card.appendChild(body);
-
-  card.addEventListener("mouseenter",()=>{
-    card.style.borderColor=ec+"60";
-    card.style.boxShadow=`0 14px 36px ${ec}22`;
-  });
-  card.addEventListener("mouseleave",()=>{
-    card.style.borderColor="";
-    card.style.boxShadow="";
-  });
+  card.addEventListener("mouseenter",()=>{card.style.borderColor=ec+"55";card.style.boxShadow="0 8px 30px "+ec+"22,0 2px 8px rgba(0,0,0,0.4)";});
+  card.addEventListener("mouseleave",()=>{card.style.borderColor="";card.style.boxShadow="";});
   return card;
 }
 
 function render(){
   const q=document.getElementById("search").value.toLowerCase().trim();
   const out=document.getElementById("output"); out.innerHTML="";
-
   const filtered=figures.filter(f=>{
     if(activeGame!=="All"&&f.game!==activeGame) return false;
     if(activeType!=="All"&&f.type!==activeType) return false;
     if(activeElem!=="All"&&f.elem!==activeElem) return false;
-    if(q&&!(
-      f.name.toLowerCase().includes(q)||
-      (f.variant||"").toLowerCase().includes(q)||
-      f.elem.toLowerCase().includes(q)||
-      (gameLabels[f.game]||"").toLowerCase().includes(q)||
-      (typeLabels[f.type]||"").toLowerCase().includes(q)
-    )) return false;
+    if(q&&!(f.name.toLowerCase().includes(q)||(f.variant||"").toLowerCase().includes(q)||f.elem.toLowerCase().includes(q)||(gameLabels[f.game]||"").toLowerCase().includes(q)||(typeLabels[f.type]||"").toLowerCase().includes(q))) return false;
     return true;
   });
-
   if(!filtered.length){
     const g=document.createElement("div");g.className="grid";
-    g.innerHTML=`<div class="empty"><div class="empty-icon">⊘</div><p>No figures match "${q||"current filters"}"</p></div>`;
+    g.innerHTML='<div class="empty"><div class="empty-ico">&#9670;</div><p>No figures match "'+( q||"current filters")+'"</p></div>';
     out.appendChild(g);
   } else {
-    // group by game for section labels
     const byGame={};
     filtered.forEach(f=>{(byGame[f.game]=byGame[f.game]||[]).push(f)});
-    const gameOrder=["SSA","SG","SSF","TT","SC","IM"];
     let idx=0;
     gameOrder.forEach(g=>{
       if(!byGame[g]) return;
-      const lbl=document.createElement("div");
-      lbl.className="section-label";
-      lbl.innerHTML=`<span>${gameLabels[g]||g} · ${byGame[g].length} items</span>`;
+      const gc=gameColors[g]||"#38d4ff";
+      const lbl=document.createElement("div"); lbl.className="slabel";
+      lbl.innerHTML='<div class="slabel-inner"><div class="sdot" style="background:'+gc+';box-shadow:0 0 6px '+gc+'88"></div><span class="stxt" style="color:'+gc+'">'+(gameLabels[g]||g)+'</span><span class="scnt">'+byGame[g].length+' items</span></div>';
       out.appendChild(lbl);
       const grid=document.createElement("div");
-      grid.className="grid"+(viewMode==="list"?" list-view":"");
-      byGame[g].forEach((f,i)=>grid.appendChild(makeCard(f,Math.min((idx++)*0.008,0.3))));
+      grid.className="grid"+(viewMode==="list"?" lv":"");
+      byGame[g].forEach(f=>grid.appendChild(makeCard(f,Math.min((idx++)*0.007,0.35))));
       out.appendChild(grid);
     });
   }
-
-  document.getElementById("countPill").textContent=`Showing ${filtered.length} item${filtered.length!==1?"s":""}`;
+  document.getElementById("countPill").textContent="Showing "+filtered.length+" item"+(filtered.length!==1?"s":"");
   updateStats();
 }
 
 function updateStats(){
-  const t=figures.length, n=owned.size, pct=t>0?Math.round(n/t*100):0;
+  const t=figures.length,n=owned.size,pct=t>0?Math.round(n/t*100):0;
   document.getElementById("statOwned").textContent=n;
   document.getElementById("statTotal").textContent=t;
   document.getElementById("statPct").textContent=pct+"%";
   document.getElementById("totalCount").textContent=t;
-  document.getElementById("ownedCount").textContent=`✓ ${n} owned`;
+  document.getElementById("ownedCount").textContent="✓ "+n+" owned";
 }
 
 function setView(mode){
   viewMode=mode;
-  document.getElementById("gridViewBtn").classList.toggle("active",mode==="grid");
-  document.getElementById("listViewBtn").classList.toggle("active",mode==="list");
+  document.getElementById("gvBtn").classList.toggle("active",mode==="grid");
+  document.getElementById("lvBtn").classList.toggle("active",mode==="list");
   render();
 }
 
-updateStats();render();
+updateStats(); render();
 document.getElementById("search").addEventListener("input",render);
 </script>
 </body>
 </html>
+
+const gameColors={"SSA":"#4ade80","SG":"#f59e0b","SSF":"#38d4ff","TT":"#c084fc","SC":"#f97316","IM":"#f43f5e"};
