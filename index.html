@@ -121,6 +121,25 @@ input[type="text"]::placeholder{color:var(--muted)}
 /* Eon's Elite — gold shimmer */
 .eonsElite-card .cimg{background:radial-gradient(ellipse at 50% 80%,rgba(255,200,32,0.18) 0%,rgba(4,10,24,0.92) 70%) !important;}
 .eonsElite-card{border-color:rgba(255,200,32,0.3) !important;}
+
+/* Placeholder cards — image not yet available */
+.card img[src*="placeholder"] {
+  display: none;
+}
+.card img[src*="placeholder"] ~ * { display: none; }
+.card:has(img[src*="placeholder"]) .card-img-inner::after {
+  content: "📷";
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255,255,255,0.3);
+}
+.card:has(img[src*="placeholder"]) {
+  opacity: 0.6;
+  border: 1px dashed rgba(255,255,255,0.3) !important;
+}
 </style>
 </head>
 <body>
@@ -322,8 +341,8 @@ const figures = [
 {game:"SSF",type:"Swap",  elem:"Undead", name:"Rattle Shake",variant:null,img:"imgs/2014/02/RattleShake.png" /* MISSING */},
 {game:"SSF",type:"Swap",  elem:"Earth", name:"Rubble Rouser",variant:null,img:"imgs/2013/12/RubbleRouser1.png" /* MISSING */},
 {game:"SSF",type:"Swap",  elem:"Tech", name:"Spy Rise",variant:null,img:"imgs/2013/12/SpyRise.png"},
-{game:"SSF",type:"Swap",  elem:"Life", name:"Stink Bomb",variant:null,img:"imgs/2013/12/StinkBomb.png" /* MISSING */},
-{game:"SSF",type:"Swap",  elem:"Life", name:"Stink Bomb",variant:"Springtime",img:"imgs/2013/11/SpringtimeStinkBomb.png" /* MISSING */},
+{game:"SSF",type:"Swap",  elem:"Life", name:"Stink Bomb",variant:null,img:"imgs/2013/12/StinkBomb.png"},
+{game:"SSF",type:"Swap",  elem:"Life", name:"Stink Bomb",variant:"Springtime",img:"imgs/placeholder.png"},
 {game:"SSF",type:"Swap",  elem:"Dark", name:"Trap Shadow",variant:null,img:"imgs/2014/03/TrapShadow.png"},
 {game:"SSF",type:"Swap",  elem:"Water", name:"Wash Buckler",variant:null,img:"imgs/2013/02/WashBuckler.png" /* MISSING */},
 {game:"SSF",type:"Swap",  elem:"Water", name:"Wash Buckler",variant:"Dark",img:"imgs/2014/02/DarkWashBuckler.png" /* MISSING */},
@@ -345,7 +364,6 @@ const figures = [
 {game:"SSF",type:"Core",  elem:"Earth", name:"Slobber Tooth",variant:"Dark",img:"imgs/2013/08/DarkSlobberTooth.png"},
 {game:"SSF",type:"Core",  elem:"Fire", name:"Smolderdash",variant:null,img:"imgs/2013/12/Smolderdash.png" /* MISSING */},
 {game:"SSF",type:"Core",  elem:"Magic", name:"Star Strike",variant:null,img:"imgs/2013/02/StarStrike.png"},
-{game:"SSF",type:"Core",  elem:"Magic", name:"Star Strike",variant:"Enhanced",img:"imgs/2013/02/StarStrike.png"},
 {game:"SSF",type:"Core",  elem:"Tech", name:"Wind-Up",variant:null,img:"imgs/2013/12/WindUp.png"},
 {game:"SSF",type:"Core",  elem:"Life", name:"Zoo Lou",variant:null,img:"imgs/2014/02/ZooLou.png" /* MISSING */},
 {game:"SSF",type:"Core",  elem:"Life", name:"Zoo Lou",variant:"Legendary",img:"imgs/2013/08/LegendaryZooLou.png" /* MISSING */},
@@ -359,6 +377,7 @@ const figures = [
 {game:"SSF",type:"Core",  elem:"Earth", name:"Terrafin",variant:"Knockout",img:"imgs/2013/08/KnockoutTerrafin.png"},
 {game:"SSF",type:"Core",  elem:"Fire", name:"Eruptor",variant:"Lava Barf",img:"imgs/2013/06/LavaBarfEruptor.png"},
 {game:"SSF",type:"Core",  elem:"Magic", name:"Spyro",variant:"Mega Ram",img:"imgs/2013/08/MegaRamSpyro.png"},
+{game:"SSF",type:"Core",  elem:"Magic", name:"Spyro",variant:"Dark Mega Ram",img:"imgs/2013/03/DarkSpyro.png"},
 {game:"SSF",type:"Core",  elem:"Magic", name:"Spyro",variant:"Dark Mega Ram",img:"imgs/2013/08/DarkSpyro.png" /* MISSING */},
 {game:"SSF",type:"Core",  elem:"Life", name:"Stealth Elf",variant:"Ninja",img:"imgs/2014/02/StealthElf.png"},
 {game:"SSF",type:"Core",  elem:"Life", name:"Stealth Elf",variant:"Dark",img:"imgs/2013/08/DarkStealthElf.png" /* MISSING */},
@@ -377,10 +396,6 @@ const figures = [
 {game:"SSF",type:"LightCore",  elem:"Water", name:"Wham-Shell",variant:null,img:"imgs/2013/12/LightCoreWhamShell.png"},
 {game:"SSF",type:"LightCore",  elem:"Undead", name:"Roller Brawl",variant:null,img:"imgs/2013/06/LightcoreRollerBrawl.png" /* MISSING */},
 {game:"SSF",type:"LightCore",  elem:"Life", name:"Zoo Lou",variant:null,img:"imgs/2013/08/LightcoreZooLou.png" /* MISSING */},
-{game:"SSF",type:"LightCore",  elem:"Water", name:"Gill Grunt",variant:null,img:"imgs/2013/02/GillGrunt1.png"},
-{game:"SSF",type:"LightCore",  elem:"Air", name:"Jet-Vac",variant:null,img:"imgs/2013/02/JetVacLightCore.png"},
-{game:"SSF",type:"LightCore",  elem:"Magic", name:"Pop Fizz",variant:null,img:"imgs/2013/02/LightCorePopFizz.png"},
-{game:"SSF",type:"LightCore",  elem:"Earth", name:"Prism Break",variant:"Series 3",img:"imgs/2013/02/PrismBreakLightCore.png"},
 {game:"SSF",type:"Adventure",  elem:"None", name:"Sheep Wreck Island",variant:null,img:"imgs/2013/12/SheepWreckIsland1.png"},
 {game:"SSF",type:"Adventure",  elem:"None", name:"Tower of Time",variant:null,img:"imgs/2013/12/TowerOfTime1.png"},
 {game:"SSF",type:"MagicItem",  elem:"None", name:"Arkeyan Crossbow",variant:null,img:"imgs/2013/12/ArkeyanCrossbow.png"},
@@ -392,7 +407,7 @@ const figures = [
 
 /* ═══ TRAP TEAM ══════════════════════════════════════════════════════════ */,
 {game:"TT",type:"TrapMaster",  elem:"Magic", name:"Blastermind",variant:null,img:"imgs/2014/09/Blastermind.png"},
-{game:"TT",type:"TrapMaster",  elem:"Life", name:"Bushwhack",variant:null,img:"imgs/2014/08/BushWhack.png" /* MISSING */},
+{game:"TT",type:"TrapMaster",  elem:"Life", name:"Bushwhack",variant:null,img:"imgs/2014/08/BushWhack.png"},
 {game:"TT",type:"TrapMaster",  elem:"Dark", name:"Enigma",variant:null,img:"imgs/2014/09/Enigma.png"},
 {game:"TT",type:"TrapMaster",  elem:"Tech", name:"Gearshift",variant:null,img:"imgs/2014/06/Gearshift.png" /* MISSING */},
 {game:"TT",type:"TrapMaster",  elem:"Air", name:"Gusto",variant:null,img:"imgs/2014/06/Gusto1.png" /* MISSING */},
@@ -458,7 +473,6 @@ const figures = [
 {game:"TT",type:"Mini",  elem:"Life", name:"Whisper Elf",variant:null,img:"imgs/2014/08/WhisperElf.png"},
 {game:"TT",type:"Mini",  elem:"Fire", name:"Weeruptor",variant:"Eggsellent",img:"imgs/2014/10/EggscellentWeeruptor.png"},
 {game:"TT",type:"Mini",  elem:"Earth", name:"Barkley",variant:"Gnarly",img:"imgs/2014/10/GnarlyBarkley.png"},
-{game:"TT",type:"Mini",  elem:"Magic", name:"Mini Spyro",variant:null,img:"imgs/2013/02/Spyro2.png"},
 {game:"TT",type:"Trap",  elem:"Magic", name:"Spell Slammer",variant:null,img:"imgs/2014/09/MagicRocketTrap.png"},
 {game:"TT",type:"Trap",  elem:"Magic", name:"Arcane Hourglass",variant:null,img:"imgs/2014/10/MagicHourglassTrap.png"},
 {game:"TT",type:"Trap",  elem:"Fire", name:"Fire Flier",variant:null,img:"imgs/2014/09/FireTorchTrap1.png" /* MISSING */},
@@ -495,11 +509,11 @@ const figures = [
 {game:"TT",type:"EonsElite",  elem:"Water", name:"Gill Grunt (Eon's Elite)",variant:null,img:"imgs/2015/04/EonsEliteGillGrunt.png" /* MISSING */},
 {game:"TT",type:"EonsElite",  elem:"Undead", name:"Chop Chop (Eon's Elite)",variant:null,img:"imgs/2014/12/EonsEliteChopChop.png" /* MISSING */},
 {game:"TT",type:"EonsElite",  elem:"Air", name:"Whirlwind (Eon's Elite)",variant:null,img:"imgs/2015/04/EonsEliteWhirlwind.png" /* MISSING */},
-{game:"TT",type:"EonsElite",  elem:"Fire", name:"Flameslinger (Eon's Elite)",variant:null,img:"imgs/2013/02/Flameslinger1.png"},
+{game:"TT",type:"EonsElite",  elem:"Fire", name:"Flameslinger (Eon's Elite)",variant:null,img:"imgs/2013/02/EonsEliteFlameslinger.png"},
 {game:"TT",type:"EonsElite",  elem:"Earth", name:"Terrafin (Eon's Elite)",variant:null,img:"imgs/2015/09/EonsEliteTerrafin.png"},
 {game:"TT",type:"EonsElite",  elem:"Undead", name:"Ghost Roaster (Eon's Elite)",variant:null,img:"imgs/2013/08/EonsEliteGhostRoaster.png"},
 {game:"TT",type:"EonsElite",  elem:"Water", name:"Slam Bam (Eon's Elite)",variant:null,img:"imgs/2015/07/EonsEliteSlamBam.png" /* MISSING */},
-{game:"TT",type:"EonsElite",  elem:"Undead", name:"Hex (Eon's Elite)",variant:null,img:"imgs/2015/07/EonsEliteHex.png" /* MISSING */},
+{game:"TT",type:"EonsElite",  elem:"Undead", name:"Hex (Eon's Elite)",variant:null,img:"imgs/placeholder.png" /* MISSING */},
 
 /* ═══ SUPERCHARGERS ══════════════════════════════════════════════════════ */,
 {game:"SC",type:"SuperCharger",  elem:"Light", name:"Astroblast",variant:null,img:"imgs/2015/07/Astroblast.png"},
@@ -568,7 +582,7 @@ const figures = [
 {game:"SC",type:"Vehicle",  elem:"Magic", name:"Stealth Stinger",variant:null,img:"imgs/2015/09/StealthStinger.png"},
 
 /* ═══ IMAGINATORS ════════════════════════════════════════════════════════ */,
-{game:"IM",type:"Sensei",  elem:"Magic",  name:"Spyro (Sensei)",    variant:null,        img:"imgs/2013/08/MegaRamSpyro.png"},
+{game:"IM",type:"Sensei",  elem:"Magic",  name:"Spyro (Sensei)",    variant:null,        img:"imgs/placeholder.png"},
 {game:"IM",type:"Sensei",  elem:"Magic",  name:"Crash Bandicoot",   variant:"Exclusive", img:"imgs/2016/09/CrashBandicoot.png"},
 {game:"IM",type:"Sensei",  elem:"Magic",  name:"Dr. Neo Cortex",    variant:"Exclusive", img:"imgs/2016/09/NeoCortex.png"},
 {game:"IM",type:"Sensei",  elem:"Fire",   name:"Ka-Boom (Sensei)",  variant:null,        img:"imgs/2013/02/KaBoomSensei.png"},
@@ -576,8 +590,8 @@ const figures = [
 {game:"IM",type:"Sensei",  elem:"Fire",   name:"Barbella",          variant:null,        img:"imgs/2016/09/Barbella.png"},
 {game:"IM",type:"Sensei",  elem:"Water",  name:"Snap Shot (Sensei)",variant:null,        img:"imgs/2013/09/SnapShotSensei.png"},
 {game:"IM",type:"Sensei",  elem:"Water",  name:"Tidepool",          variant:null,        img:"imgs/2016/09/Tidepool.png"},
-{game:"IM",type:"Sensei",  elem:"Earth",  name:"Terrabite (Sensei)",variant:null,        img:"imgs/2014/08/Terrabite.png"},
-{game:"IM",type:"Sensei",  elem:"Earth",  name:"Grave Clobber",     variant:null,        img:"imgs/2016/09/GraveClobber.png"},
+{game:"IM",type:"Sensei",  elem:"Earth",  name:"Terrabite (Sensei)",variant:null,        img:"imgs/placeholder.png"},
+{game:"IM",type:"Sensei",  elem:"Earth",  name:"Grave Clobber",     variant:null,        img:"imgs/2017/03/GraveClobber_Actual.png"},
 {game:"IM",type:"Sensei",  elem:"Earth",  name:"Tri-Tip",           variant:null,        img:"imgs/2016/09/TriTip.png"},
 {game:"IM",type:"Sensei",  elem:"Air",    name:"Thunderbolt (Sensei)",variant:null,      img:"imgs/2013/09/ThunderboltSensei.png"},
 {game:"IM",type:"Sensei",  elem:"Air",    name:"Ambush",            variant:null,        img:"imgs/2016/09/Ambush.png"},
