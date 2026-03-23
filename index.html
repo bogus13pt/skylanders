@@ -114,6 +114,13 @@ input[type="text"]::placeholder{color:var(--muted)}
 .empty p{font-family:'Bangers',cursive;font-size:22px;letter-spacing:2px;}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:99px}
 @media(max-width:480px){:root{--card-w:145px}h1{font-size:3.5rem}}
+
+/* Sensei cards — red base accent (Imaginators red-base figures) */
+.sensei-card .cimg::before{content:'';position:absolute;bottom:0;left:0;right:0;height:22px;background:linear-gradient(180deg,transparent,rgba(200,20,20,0.55));z-index:2;pointer-events:none;}
+.sensei-card .card-img-inner::after{content:'SENSEI';position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-family:'Bangers',cursive;font-size:9px;letter-spacing:2px;color:rgba(255,120,120,0.9);z-index:3;}
+/* Eon's Elite — gold shimmer */
+.eonsElite-card .cimg{background:radial-gradient(ellipse at 50% 80%,rgba(255,200,32,0.18) 0%,rgba(4,10,24,0.92) 70%) !important;}
+.eonsElite-card{border-color:rgba(255,200,32,0.3) !important;}
 </style>
 </head>
 <body>
@@ -335,7 +342,7 @@ const figures = [
 {game:"SSF",type:"Core",  elem:"Water",  name:"Flip Wreck",      variant:null,          img:"imgs/2013/02/FlipWreck.png"},
 
 // SSF S2 reprints (key ones)
-{game:"SSF",type:"Core",  elem:"Magic",  name:"Spyro",           variant:"Series 3",    img:"imgs/2013/10/Spyro3.png"},
+{game:"SSF",type:"Core",  elem:"Magic",  name:"Spyro",           variant:"Series 3",    img:"imgs/2013/02/Spyro2.png"},
 {game:"SSF",type:"Core",  elem:"Fire",   name:"Eruptor",         variant:"Series 3",    img:"imgs/2013/10/Eruptor3.png"},
 {game:"SSF",type:"Core",  elem:"Tech",   name:"Trigger Happy",   variant:"Series 3",    img:"imgs/2013/10/TriggerHappy3.png"},
 {game:"SSF",type:"Core",  elem:"Life",   name:"Stealth Elf",     variant:"Series 3",    img:"imgs/2013/10/StealthElf3.png"},
@@ -352,14 +359,14 @@ const figures = [
 {game:"SSF",type:"LightCore",elem:"Tech",   name:"Countdown",    variant:null,          img:"imgs/2013/02/LightcoreCountdown.png"},
 
 // SSF Adventure Packs
-{game:"SSF",type:"Adventure",elem:"Air",   name:"Tower of Time",  variant:"SSF",        img:"imgs/2013/09/TowerOfTimeSSF.png"},
-{game:"SSF",type:"Adventure",elem:"Water", name:"Sheep Wreck Island",variant:"SSF",     img:"imgs/2013/09/SheepWreckSSF.png"},
+{game:"SSF",type:"Adventure",elem:"Air",   name:"Tower of Time",  variant:"SSF",        img:"imgs/2013/12/TowerOfTime1.png"},
+{game:"SSF",type:"Adventure",elem:"Water", name:"Sheep Wreck Island",variant:"SSF",     img:"imgs/2013/12/SheepWreckIsland1.png"},
 
 // ─────────────────────────────────────────────
 // TRAP TEAM (2014)
 // ─────────────────────────────────────────────
 // Trap Masters
-{game:"TT",type:"TrapMaster",elem:"Magic", name:"Snap Shot",      variant:null,         img:"imgs/2014/08/SnapShot.png"},
+{game:"TT",type:"TrapMaster",elem:"Magic", name:"Snap Shot",      variant:null,         img:"imgs/2014/04/SnapShot1.png"},
 {game:"TT",type:"TrapMaster",elem:"Magic", name:"Lob-Star",        variant:null,         img:"imgs/2014/08/LobStar.png"},
 {game:"TT",type:"TrapMaster",elem:"Fire",  name:"Wildfire",        variant:null,         img:"imgs/2014/08/Wildfire.png"},
 {game:"TT",type:"TrapMaster",elem:"Fire",  name:"Ka-Boom",         variant:null,         img:"imgs/2014/08/KaBoom.png"},
@@ -402,7 +409,7 @@ const figures = [
 {game:"TT",type:"Core",   elem:"Dark",   name:"Blackout",          variant:"Legendary",  img:"imgs/2014/11/LegendaryBlackout.png"},
 
 // Trap Team — Minis
-{game:"TT",type:"Mini",   elem:"Magic",  name:"Mini Spyro",        variant:null,         img:"imgs/2013/02/MiniSpyro.png"},
+{game:"TT",type:"Mini",   elem:"Magic",  name:"Mini Spyro",        variant:null,         img:"imgs/2013/02/Spyro2.png"},
 {game:"TT",type:"Mini",   elem:"Magic",  name:"Weeruptor",         variant:null,         img:"imgs/2014/08/Weeruptor.png"},
 {game:"TT",type:"Mini",   elem:"Fire",   name:"Small Fry",         variant:null,         img:"imgs/2014/08/SmallFry.png"},
 {game:"TT",type:"Mini",   elem:"Water",  name:"Gill Runt",         variant:null,         img:"imgs/2014/08/GillRunt.png"},
@@ -451,26 +458,25 @@ const figures = [
 {game:"SC",type:"SuperCharger",elem:"Fire",  name:"Spitfire",       variant:null,        img:"imgs/2015/09/Spitfire.png"},
 {game:"SC",type:"SuperCharger",elem:"Fire",  name:"Spitfire",       variant:"Dark",      img:"imgs/2015/10/DarkSpitfire.png"},
 {game:"SC",type:"SuperCharger",elem:"Fire",  name:"Hot Streak",     variant:null,        img:"imgs/2015/09/HotStreak.png"},
-{game:"SC",type:"SuperCharger",elem:"Fire",  name:"Fiesta",         variant:null,        img:"imgs/2015/09/Fiesta.png"},
-{game:"SC",type:"SuperCharger",elem:"Water", name:"Super Shot Stealth Elf",variant:null, img:"imgs/2015/09/SuperShotStealthElf.png"},
-{game:"SC",type:"SuperCharger",elem:"Water", name:"Dive-Clops",     variant:null,        img:"imgs/2015/09/DiveClops.png"},
-{game:"SC",type:"SuperCharger",elem:"Water", name:"Dive-Clops",     variant:"Legendary", img:"imgs/2015/06/DiveClops.png"},
+{game:"SC",type:"SuperCharger",elem:"Fire",  name:"Fiesta",            variant:null,        img:"imgs/2015/06/Fiesta.png"},
+{game:"SC",type:"SuperCharger",elem:"Water", name:"Super Shot Stealth Elf",variant:null,    img:"imgs/2015/07/SuperShotStealthElf1.png"},
+{game:"SC",type:"SuperCharger",elem:"Water", name:"Dive-Clops",        variant:null,        img:"imgs/2015/06/DiveClops.png"},
+{game:"SC",type:"SuperCharger",elem:"Water", name:"Dive-Clops",        variant:"Legendary", img:"imgs/2015/11/MissileTowDiveClops.png"},
 {game:"SC",type:"SuperCharger",elem:"Water", name:"Reef Ripper",    variant:null,        img:"imgs/2015/06/ReefRipper.png"},
-{game:"SC",type:"SuperCharger",elem:"Earth", name:"Smash Hit",      variant:null,        img:"imgs/2015/09/SmashHit.png"},
+{game:"SC",type:"SuperCharger",elem:"Earth", name:"Smash Hit",         variant:null,        img:"imgs/2015/07/SmashHit1.png"},
 {game:"SC",type:"SuperCharger",elem:"Earth", name:"Smash Hit",      variant:"Steel Plated",img:"imgs/2015/10/SteelPlatedSmashHit.png"},
-{game:"SC",type:"SuperCharger",elem:"Earth", name:"Thrill Roller",  variant:null,        img:"imgs/2015/06/ThrillRoller.png"},
 {game:"SC",type:"SuperCharger",elem:"Air",   name:"Hurricane Jet-Vac",variant:null,      img:"imgs/2015/09/HurricaneJetVac.png"},
 {game:"SC",type:"SuperCharger",elem:"Air",   name:"Hurricane Jet-Vac",variant:"Legendary",img:"imgs/2015/10/LegendaryHurricaneJetVac.png"},
 {game:"SC",type:"SuperCharger",elem:"Air",   name:"Sky Slicer",     variant:null,        img:"imgs/2015/09/SkySlicer.png"},
-{game:"SC",type:"SuperCharger",elem:"Life",  name:"Thrillipede",    variant:null,        img:"imgs/2015/09/Thrillipede.png"},
+{game:"SC",type:"SuperCharger",elem:"Life",  name:"Thrillipede",       variant:null,        img:"imgs/2015/07/Thrillipede1.png"},
 {game:"SC",type:"SuperCharger",elem:"Life",  name:"Buzz Wing",      variant:null,        img:"imgs/2015/09/BuzzWing.png"},
 {game:"SC",type:"SuperCharger",elem:"Life",  name:"Turbo Charge Donkey Kong",variant:"Nintendo",img:"imgs/2015/09/TurboChargeDK.png"},
-{game:"SC",type:"SuperCharger",elem:"Undead",name:"Bone Bash Roller Brawl",variant:null, img:"imgs/2015/09/BoneBashRollerBrawl.png"},
+{game:"SC",type:"SuperCharger",elem:"Undead",name:"Bone Bash Roller Brawl",variant:null,    img:"imgs/2015/07/BoneBashRollerBrawl1.png"},
 {game:"SC",type:"SuperCharger",elem:"Undead",name:"Gold Rusher",    variant:null,        img:"imgs/2015/09/GoldRusher.png"},
-{game:"SC",type:"SuperCharger",elem:"Tech",  name:"Splat",          variant:null,        img:"imgs/2015/09/Splat.png"},
+{game:"SC",type:"SuperCharger",elem:"Tech",  name:"Splat",             variant:null,        img:"imgs/2015/07/Splat1.png"},
 {game:"SC",type:"SuperCharger",elem:"Tech",  name:"Splat",          variant:"Power Blue", img:"imgs/2015/10/PowerBlueSplat.png"},
 {game:"SC",type:"SuperCharger",elem:"Tech",  name:"Shield Striker", variant:null,        img:"imgs/2015/09/ShieldStriker.png"},
-{game:"SC",type:"SuperCharger",elem:"Magic", name:"Stormblade",     variant:null,        img:"imgs/2015/09/Stormblade.png"},
+{game:"SC",type:"SuperCharger",elem:"Magic", name:"Stormblade",        variant:null,        img:"imgs/2015/06/StormBlade.png"},
 {game:"SC",type:"SuperCharger",elem:"Magic", name:"Sun Runner",     variant:null,        img:"imgs/2015/09/SunRunner.png"},
 {game:"SC",type:"SuperCharger",elem:"Magic", name:"Bowser (Dark)", variant:"Nintendo",   img:"imgs/2015/09/BowserDark.png"},
 {game:"SC",type:"SuperCharger",elem:"Magic", name:"Bowser",         variant:"Nintendo",  img:"imgs/2015/09/Bowser.png"},
@@ -481,7 +487,7 @@ const figures = [
 {game:"SC",type:"Vehicle",elem:"Fire",  name:"Hammer Slam Bowser's Clown Cruiser",variant:"Nintendo",img:"imgs/2015/09/ClownCruiser.png"},
 {game:"SC",type:"Vehicle",elem:"Water", name:"Reef Ripper (sub)",  variant:null,        img:"imgs/2015/06/ReefRipperVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Water", name:"Dive Bomber",        variant:null,        img:"imgs/2015/09/DiveBomber.png"},
-{game:"SC",type:"Vehicle",elem:"Earth", name:"Thrill Roller (ball)",variant:null,       img:"imgs/2015/06/ThrillRollerVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Earth", name:"Thrill Roller",       variant:"Vehicle",  img:"imgs/2015/06/ThrillRollerVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Earth", name:"Shark Tank",         variant:null,        img:"imgs/2015/06/SharkTank.png"},
 {game:"SC",type:"Vehicle",elem:"Air",   name:"Sky Slicer (jet)",   variant:null,        img:"imgs/2015/06/SkyStickerVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Air",   name:"Jet Stream",         variant:null,        img:"imgs/2015/09/JetStream.png"},
@@ -490,7 +496,7 @@ const figures = [
 {game:"SC",type:"Vehicle",elem:"Life",  name:"Splatter Splasher",  variant:null,        img:"imgs/2015/09/SplatterSplasher.png"},
 {game:"SC",type:"Vehicle",elem:"Undead",name:"Gold Rusher (car)",  variant:null,        img:"imgs/2015/06/GoldRusherVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Undead",name:"Tomb Buggy",         variant:null,        img:"imgs/2015/09/TombBuggy.png"},
-{game:"SC",type:"Vehicle",elem:"Tech",  name:"Shield Striker (disc)",variant:null,      img:"imgs/2015/06/SkyStickerVehicle.png"},
+{game:"SC",type:"Vehicle",elem:"Tech",  name:"Shield Striker",       variant:"Vehicle",  img:"imgs/2015/11/PatinaShieldStriker.png"},
 {game:"SC",type:"Vehicle",elem:"Tech",  name:"Clown Cruiser Dark", variant:"Nintendo",  img:"imgs/2015/06/ClownCruiserDark.png"},
 {game:"SC",type:"Vehicle",elem:"Magic", name:"Sun Runner (plane)", variant:null,        img:"imgs/2015/06/SunRunnerVehicle.png"},
 {game:"SC",type:"Vehicle",elem:"Magic", name:"Stealth Stinger",    variant:null,        img:"imgs/2015/09/StealthStinger.png"},
@@ -544,7 +550,7 @@ const figures = [
 {game:"IM",type:"Sensei",  elem:"Dark",   name:"Wolfgang",          variant:null,        img:"imgs/2016/09/Wolfgang.png"},
 
 // Imaginators — Creation Crystals
-{game:"IM",type:"Crystal", elem:"Magic",  name:"Crystal (Magic)",   variant:"Pyramid",   img:"imgs/2013/02/CrystalMagic.png"},
+{game:"IM",type:"Crystal", elem:"Magic",  name:"Crystal (Magic)",   variant:"Pyramid",   img:"imgs/2016/05/MagicPyramidCreationCrystalWM.png"},
 {game:"IM",type:"Crystal", elem:"Magic",  name:"Crystal (Magic)",   variant:"Hourglass", img:"imgs/2013/02/CrystalMagic2.png"},
 {game:"IM",type:"Crystal", elem:"Fire",   name:"Crystal (Fire)",    variant:"Blade",     img:"imgs/2013/02/CrystalFire.png"},
 {game:"IM",type:"Crystal", elem:"Fire",   name:"Crystal (Fire)",    variant:"Torch",     img:"imgs/2013/02/CrystalFire2.png"},
