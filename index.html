@@ -146,6 +146,11 @@ input[type="text"]::placeholder{color:var(--muted)}
       <div class="opill" id="ownedCount">&#10003; 0 owned</div>
       <div class="cpill" id="countPill">Showing 0 items</div>
     </div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <button class="vbtn" onclick="exportCollection()" style="width:auto;padding:0 10px;font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;letter-spacing:1px;">&#8593; EXPORT</button>
+      <button class="vbtn" onclick="document.getElementById('importFile').click()" style="width:auto;padding:0 10px;font-family:'Nunito',sans-serif;font-size:10px;font-weight:900;letter-spacing:1px;">&#8595; IMPORT</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importCollection(event)">
+    </div>
     <div class="vtog">
       <button class="vbtn active" id="gvBtn" title="Grid" onclick="setView('grid')">&#x229E;</button>
       <button class="vbtn" id="lvBtn" title="List" onclick="setView('list')">&#x2630;</button>
@@ -816,6 +821,40 @@ function setView(mode){
 
 updateStats(); render();
 document.getElementById("search").addEventListener("input",render);
+
+function exportCollection(){
+  const data={version:1,owned:[...owned],exported:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="skylanders-collection-"+new Date().toISOString().slice(0,10)+".json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importCollection(event){
+  const file=event.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      const list=Array.isArray(data)?data:(data.owned||[]);
+      if(!list.length){alert("No collection data found in file.");return;}
+      if(!confirm("Import "+list.length+" owned items? This will replace your current collection.")){return;}
+      owned.clear();
+      list.forEach(k=>owned.add(k));
+      localStorage.setItem("sky_owned",JSON.stringify([...owned]));
+      render();
+      alert("Imported "+owned.size+" items successfully!");
+    }catch(err){
+      alert("Error reading file. Make sure it is a valid Skylanders collection export.");
+    }
+    event.target.value="";
+  };
+  reader.readAsText(file);
+}
+
 </script>
 <footer style="position:relative;z-index:1;margin-top:60px;padding:28px 24px;border-top:1px solid rgba(56,212,255,0.08);text-align:center;">
   <p style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;color:#3d5a80;line-height:1.9;max-width:700px;margin:0 auto;">
