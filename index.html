@@ -120,6 +120,30 @@ input[type="text"]::placeholder{color:var(--muted)}
   letter-spacing:3px;text-transform:uppercase;color:var(--muted);
   display:flex;align-items:center;gap:10px;}
 .sublabel::after{content:'';flex:1;height:1px;background:rgba(56,212,255,0.08);}
+
+/* ── RARE / LIMITED CARDS ──────────────────────────────────────── */
+.card.rare-employee { border-color: #ffd700 !important; box-shadow: 0 0 0 1px #ffd700, 0 0 18px rgba(255,215,0,0.35) !important; }
+.card.rare-employee::after { content:''; position:absolute; inset:0; border-radius:var(--radius); background: linear-gradient(135deg, rgba(255,215,0,0.06) 0%, transparent 60%); pointer-events:none; z-index:0; }
+.card.rare-legend  { border-color: #60a5fa !important; box-shadow: 0 0 0 1px #60a5fa, 0 0 16px rgba(96,165,250,0.3) !important; }
+.card.rare-chase   { border-color: #c084fc !important; box-shadow: 0 0 0 1px #c084fc, 0 0 14px rgba(192,132,252,0.28) !important; }
+.card.rare-dark    { border-color: #6366f1 !important; box-shadow: 0 0 0 1px #6366f1, 0 0 14px rgba(99,102,241,0.28) !important; }
+.rare-badge {
+  position:absolute; bottom:8px; left:8px; right:8px;
+  display:flex; align-items:center; justify-content:space-between;
+  z-index:4; pointer-events:none;
+}
+.rare-pill {
+  font-family:'Nunito',sans-serif; font-size:8px; font-weight:900;
+  letter-spacing:1.5px; text-transform:uppercase;
+  padding:3px 8px; border-radius:999px;
+  white-space:nowrap; line-height:1.4;
+}
+.rp-employee { background:#ffd700; color:#000; }
+.rp-legend   { background:#60a5fa; color:#000; }
+.rp-chase    { background:#c084fc; color:#000; }
+.rp-dark     { background:#6366f1; color:#fff; }
+.rare-qty    { font-family:'Nunito',sans-serif; font-size:8px; font-weight:900; color:#ffd700; letter-spacing:1px; white-space:nowrap; text-shadow:0 0 8px rgba(255,215,0,0.6); }
+
 </style>
 </head>
 <body>
@@ -711,13 +735,91 @@ buildFilters("gFilters",["All",...gameOrder],g=>gameColors[g]?[gameColors[g],"#0
 buildFilters("tFilters",typeOrder,()=>null,t=>t==="All"?"All Types":(typeLabels[t]||t),t=>{activeType=t});
 buildFilters("eFilters",elemOrder,e=>elemColors[e]||null,e=>e==="All"?"All Elements":e,e=>{activeElem=e});
 
+const RARE_MAP = {
+  "chop chop|gold":{cls:"rare-employee",pillCls:"rp-employee",pillLabel:"Employee Ed.",qty:"~8,000 pcs"},
+  "drill sergeant|gold":{cls:"rare-employee",pillCls:"rp-employee",pillLabel:"Employee Ed.",qty:"~8,000 pcs"},
+  "flameslinger|gold":{cls:"rare-employee",pillCls:"rp-employee",pillLabel:"Employee Ed.",qty:"~8,000 pcs"},
+  "fire kraken|gold":{cls:"rare-employee",pillCls:"rp-employee",pillLabel:"Employee Ed.",qty:"Limited"},
+  "bash|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "bouncer|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "chill|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "chop chop|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "free ranger|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "ignitor|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "jet-vac|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "night shift|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "slam bam|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "spyro|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "stealth elf|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "trigger happy|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "zoo lou|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "astroblast|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "bone bash roller brawl|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "hurricane jet-vac|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "sun runner|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "blades|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "bushwhack|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "deja vu|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "hand of fate|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "jawbreaker|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "kaos trap|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "crystal (legendary)|legendary":{cls:"rare-legend",pillCls:"rp-legend",pillLabel:"Legendary",qty:"Exclusive"},
+  "hex|pearl":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Toy Fair 2012"},
+  "cynder|crystal clear":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "stealth elf|crystal clear":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "wham-shell|crystal clear":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "whirlwind|crystal clear":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "stump smash|flocked":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "trigger happy|springtime flocked":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "warnado|glow in dark":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "wrecking ball|glow in dark":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "zap|glow in dark":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "boomer|silver":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "bash|blue":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Fan Poll",qty:"Limited"},
+  "ninjini|scarlet":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "crusher|granite":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "flashwing|jade":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "tree rex|gnarly":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "hot dog|molten":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "pop fizz|punch pop":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "doom stone|gold/bronze":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "stink bomb|silver/gold":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "trap shadow|bronze/silver":{cls:"rare-chase",pillCls:"rp-chase",pillLabel:"Chase Rare",qty:"Limited"},
+  "spyro|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "blast zone|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "slobber tooth|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "stealth elf|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "wash buckler|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "spyro|dark mega ram":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "food fight|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "snap shot|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "wildfire|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "hot streak|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "sea shadow|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "spitfire|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "super shot stealth elf|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "barrel blaster|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "golden queen|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "king pen|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "wolfgang|dark":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Exclusive"},
+  "bowser|dark nintendo":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Nintendo Excl."},
+  "clown cruiser|dark nintendo":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Nintendo Excl."},
+  "hammer slam bowser|dark nintendo":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Nintendo Excl."},
+  "turbo charge donkey kong|dark nintendo":{cls:"rare-dark",pillCls:"rp-dark",pillLabel:"Dark Ed.",qty:"Nintendo Excl."},
+};
+
+function getRare(data){
+  const key=(data.name.toLowerCase()+"|"+(data.variant||"").toLowerCase());
+  return RARE_MAP[key]||null;
+}
 function makeCard(data,delay){
   const gc=gameColors[data.game]||"#38d4ff";
   const ec=elemColors[data.elem]?elemColors[data.elem][0]:"#888";
   const ecfg=elemColors[data.elem]?elemColors[data.elem][1]:"#fff";
   const key=itemKey(data),isOwned=owned.has(key);
+  const rare=getRare(data);
   const card=document.createElement("div");
-  card.className="card"+(isOwned?" owned":"");
+  card.className="card"+(isOwned?" owned":"")+(rare?" "+rare.cls:"");
   card.style.animationDelay=delay+"s";
   const imgA=document.createElement("div");
   imgA.className="cimg";
@@ -742,7 +844,13 @@ function makeCard(data,delay){
     else{owned.add(key);ob.classList.add("owned");card.classList.add("owned");}
     localStorage.setItem("sky_owned",JSON.stringify([...owned]));updateStats();
   });
-  imgA.appendChild(ob); card.appendChild(imgA);
+  imgA.appendChild(ob);
+  if(rare){
+    const rb=document.createElement("div"); rb.className="rare-badge";
+    rb.innerHTML='<span class="rare-pill '+rare.pillCls+'">'+ rare.pillLabel+'</span><span class="rare-qty">&#9733; '+rare.qty+'</span>';
+    imgA.appendChild(rb);
+  }
+  card.appendChild(imgA);
   const body=document.createElement("div"); body.className="cbody";
   body.innerHTML='<div class="ctype">'+(typeLabels[data.type]||data.type)+'</div><div class="cname">'+data.name+'</div><div class="ctags"><span class="etag" style="background:'+ec+';color:'+ecfg+'">'+data.elem+'</span>'+(data.variant?'<span class="vtag">'+data.variant+'</span>':'')+'</div>';
   card.appendChild(body);
